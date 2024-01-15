@@ -1,0 +1,31 @@
+{
+  "name": "evaexchange",
+  "version": "1.0.0",
+  "description": "REST API for Eva Exchange, Super Trade application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:server": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oguztimurtasdelen/EvaExchange-CaseStudy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oguztimurtasdelen/EvaExchange-CaseStudy/issues"
+  },
+  "homepage": "https://github.com/oguztimurtasdelen/EvaExchange-CaseStudy#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
+    "mysql2": "^3.7.0",
+    "nodemon": "^3.0.2",
+    "redis": "^4.6.12",
+    "sequelize": "^6.35.2"
+  }
+}

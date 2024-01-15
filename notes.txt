@@ -1,0 +1,200 @@
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class share extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
+  }
+  share.init({
+    symbol: DataTypes.STRING,
+    rate: DataTypes.DECIMAL
+  }, {
+    sequelize,
+    modelName: 'share',
+  });
+  return share;
+};
+
+
+
+----------------------------------
+
+
+'use strict';
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('shares', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      symbol: {
+        type: Sequelize.STRING(3),
+        allowNull: false,
+        unique: true,
+        validate: {
+          isUppercase: true,
+          is: /^[A-Z]{3}$/i
+        }
+      },
+      rate: {
+        type: Sequelize.DECIMAL(5 ,2)
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      }
+    });
+  },
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('shares');
+  }
+};
+
+
+---------------------------------------------------------
+
+
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class portfolio extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
+  }
+  portfolio.init({
+    wallet: DataTypes.JSON
+  }, {
+    sequelize,
+    modelName: 'portfolio',
+  });
+  return portfolio;
+};
+
+------------------------------------------------------------
+
+'use strict';
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('portfolios', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      wallet: {
+        type: Sequelize.JSON
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      }
+    });
+  },
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('portfolios');
+  }
+};
+
+-----------------------------------------------
+
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class transaction extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
+  }
+  transaction.init({
+    portfolioId: DataTypes.INTEGER,
+    shareId: DataTypes.INTEGER,
+    shareRate: DataTypes.DECIMAL,
+    shareQuantity: DataTypes.INTEGER,
+    type: DataTypes.ENUM("BUY", "SELL")
+  }, {
+    sequelize,
+    modelName: 'transaction',
+  });
+  return transaction;
+};
+
+-----------------------------------------------
+
+
+'use strict';
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('transactions', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      portfolioId: {
+        type: Sequelize.INTEGER
+      },
+      shareId: {
+        type: Sequelize.INTEGER
+      },
+      shareRate: {
+        type: Sequelize.DECIMAL(5, 2)
+      },
+      shareQuantity: {
+        type: Sequelize.INTEGER
+      },
+      type: {
+        type: Sequelize.ENUM("BUY", "SELL")
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      }
+    });
+  },
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('transactions');
+  }
+};
