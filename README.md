@@ -1,6 +1,6 @@
-# Eva Exchance - Super Trader
+# Eva Exchance - Super Traders
 
-Briefly introduce your project.
+End-point structure for digital traders.
 
 ## Getting Started
 
@@ -21,9 +21,9 @@ You need the following software to run the project:
 
 ## Usage Examples
 
-Eva Exchange API.postman_collection.json
+You can use `Eva Exchange API.postman_collection.json` file to see results in POSTMAN.
 
-
-## License
-
-This project is licensed under [MIT] - see the [License Details].
+#### Details
+Writer: Oğuz Timur Taşdelen
+Stack: Node.js(Express)
+Key Words: #sequelize, #mysql2, #redis, #express-rate-limit
